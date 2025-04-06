@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dog3c32ncrliy"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 24.0
+offset_right = 182.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 25
+text = "Select level:"
+
+[node name="Level 1" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 99.0
+offset_right = 138.0
+offset_bottom = 129.0
+text = "Level 1"
+
+[node name="Level 2" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 157.0
+offset_right = 138.0
+offset_bottom = 188.0
+text = "Level 2"
+
+[node name="Level 3" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 215.0
+offset_right = 138.0
+offset_bottom = 246.0
+text = "Level 3"
