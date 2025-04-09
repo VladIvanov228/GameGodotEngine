@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dog3c32ncrliy"]
+[gd_scene load_steps=2 format=3 uid="uid://dog3c32ncrliy"]
+
+[ext_resource type="PackedScene" uid="uid://b4jfp4bnryps0" path="res://bg.tscn" id="1_u52ul"]
 
 [node name="Level" type="Node2D"]
 
@@ -30,3 +32,5 @@ offset_top = 215.0
 offset_right = 138.0
 offset_bottom = 246.0
 text = "Level 3"
+
+[node name="BG" parent="." instance=ExtResource("1_u52ul")]
