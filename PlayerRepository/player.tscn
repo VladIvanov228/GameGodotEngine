@@ -200,3 +200,12 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_06v7d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+process_callback = 0
+limit_left = 0
+limit_right = 1250
+limit_bottom = 675
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
