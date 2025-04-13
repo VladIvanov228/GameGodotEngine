@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://dprhxut1xyn6h"]
+[gd_scene load_steps=27 format=3 uid="uid://dprhxut1xyn6h"]
 
 [ext_resource type="Texture2D" uid="uid://bmkdl2l2738oh" path="res://oak_woods_v1.0/character/char_blue.png" id="1_06v7d"]
+[ext_resource type="Script" uid="uid://bnbfqfi673ooy" path="res://PlayerRepository/player.gd" id="1_io5tk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io5tk"]
 atlas = ExtResource("1_06v7d")
@@ -187,6 +188,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06v7d"]
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_io5tk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -16)
