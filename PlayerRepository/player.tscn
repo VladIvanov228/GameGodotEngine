@@ -1,7 +1,23 @@
-[gd_scene load_steps=27 format=3 uid="uid://dprhxut1xyn6h"]
+[gd_scene load_steps=31 format=3 uid="uid://dprhxut1xyn6h"]
 
 [ext_resource type="Texture2D" uid="uid://bmkdl2l2738oh" path="res://oak_woods_v1.0/character/char_blue.png" id="1_06v7d"]
 [ext_resource type="Script" uid="uid://bnbfqfi673ooy" path="res://PlayerRepository/player.gd" id="1_io5tk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2uof"]
+atlas = ExtResource("1_06v7d")
+region = Rect2(56, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggb87"]
+atlas = ExtResource("1_06v7d")
+region = Rect2(112, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plt8u"]
+atlas = ExtResource("1_06v7d")
+region = Rect2(168, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8mwq"]
+atlas = ExtResource("1_06v7d")
+region = Rect2(224, 224, 56, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io5tk"]
 atlas = ExtResource("1_06v7d")
@@ -93,6 +109,23 @@ region = Rect2(392, 112, 56, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bxgpt"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2uof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggb87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plt8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8mwq")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_io5tk")
@@ -193,10 +226,9 @@ script = ExtResource("1_io5tk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -16)
 sprite_frames = SubResource("SpriteFrames_bxgpt")
-animation = &"Jump"
+animation = &"Fall"
 autoplay = "Idle"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.572576
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_06v7d")
