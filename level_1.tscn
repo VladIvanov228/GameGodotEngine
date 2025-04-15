@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0iseyvirlja2"]
+[gd_scene load_steps=11 format=3 uid="uid://c0iseyvirlja2"]
 
 [ext_resource type="PackedScene" uid="uid://dprhxut1xyn6h" path="res://PlayerRepository/player.tscn" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://bew3fiq4xc5wm" path="res://oak_woods_v1.0/background/background_layer_1.png" id="2_rka8t"]
 [ext_resource type="Texture2D" uid="uid://d2gr5jeb38wwv" path="res://oak_woods_v1.0/background/background_layer_2.png" id="3_5hph3"]
 [ext_resource type="Texture2D" uid="uid://lkexi2dbbo0u" path="res://oak_woods_v1.0/background/background_layer_3.png" id="4_j7kpp"]
 [ext_resource type="Texture2D" uid="uid://d3xiebhpo4nfu" path="res://oak_woods_v1.0/oak_woods_tileset.png" id="5_bjebc"]
+[ext_resource type="PackedScene" uid="uid://c81clyhypemk1" path="res://MobsRepository/skelet.tscn" id="6_5hph3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rka8t"]
 texture = ExtResource("5_bjebc")
@@ -436,6 +437,32 @@ texture = ExtResource("5_bjebc")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rka8t")
 
+[sub_resource type="FontFile" id="FontFile_5hph3"]
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="GDScript" id="GDScript_j7kpp"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"HP: \" + str($\"../../Player2/Player\".health)
+"
+
 [node name="level 1" type="Node2D"]
 
 [node name="BG" type="ParallaxBackground" parent="."]
@@ -477,3 +504,18 @@ layer_0/tile_data = PackedInt32Array(2424833, 65536, 1, 2424834, 131072, 1, 2424
 position = Vector2(225, 573)
 
 [node name="Mobs" type="Node2D" parent="."]
+
+[node name="Skelet" parent="Mobs" instance=ExtResource("6_5hph3")]
+position = Vector2(454, 567)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 5.0
+offset_right = 124.0
+offset_bottom = 50.0
+theme_override_fonts/font = SubResource("FontFile_5hph3")
+theme_override_font_sizes/font_size = 30
+text = "Health: "
+script = SubResource("GDScript_j7kpp")
