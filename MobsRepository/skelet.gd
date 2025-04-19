@@ -43,8 +43,11 @@ func _on_death_skelet_body_entered(body: Node2D) -> void:
 		death()
 func _on_hit_a_player_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		body.health -= 40
-		death()
+		if alive == true:
+			body.health -= 40
+			death()
+		
+	
 func death():
 	alive = false
 	anim.play("Death")
