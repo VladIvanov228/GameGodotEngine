@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://u8jku0rgwg0l"]
+[gd_scene load_steps=40 format=3 uid="uid://u8jku0rgwg0l"]
 
 [ext_resource type="Texture2D" uid="uid://cn0dodtjcs3ih" path="res://Monsters_Creatures_Fantasy/Goblin/Attack.png" id="1_dhirx"]
+[ext_resource type="Script" uid="uid://vmvnn2qqv6uw" path="res://MobsRepository/goblin.gd" id="1_nnp1g"]
 [ext_resource type="Texture2D" uid="uid://cmlvewa8gwh8k" path="res://Monsters_Creatures_Fantasy/Goblin/Death.png" id="2_nnp1g"]
 [ext_resource type="Texture2D" uid="uid://b3nxygd6g1ehr" path="res://Monsters_Creatures_Fantasy/Goblin/Idle.png" id="3_lug5p"]
 [ext_resource type="Texture2D" uid="uid://dmocyybv5651m" path="res://Monsters_Creatures_Fantasy/Goblin/Run.png" id="4_dgyq6"]
@@ -151,7 +152,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,9 +167,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o6cpg")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -185,7 +186,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -231,10 +232,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"TakeHit",
-"speed": 5.0
+"speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnp1g"]
+radius = 204.353
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnp1g"]
+size = Vector2(20, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lug5p"]
+size = Vector2(30, 23)
+
 [node name="Goblin" type="CharacterBody2D"]
+script = ExtResource("1_nnp1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mq4fs")
@@ -242,6 +253,29 @@ shape = SubResource("CapsuleShape2D_mq4fs")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -14)
 sprite_frames = SubResource("SpriteFrames_faeqc")
-animation = &"Run"
+animation = &"Death"
 autoplay = "Idle"
-frame_progress = 0.359718
+frame = 3
+frame_progress = 1.0
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+shape = SubResource("CircleShape2D_nnp1g")
+
+[node name="DeathGoblin" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathGoblin"]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_nnp1g")
+
+[node name="HitAPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitAPlayer"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_lug5p")
+
+[connection signal="body_entered" from="DetectPlayer" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="DetectPlayer" to="." method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="DeathGoblin" to="." method="_on_death_goblin_body_entered"]
+[connection signal="body_entered" from="HitAPlayer" to="." method="_on_hit_a_player_body_entered"]
