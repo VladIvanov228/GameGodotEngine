@@ -28,14 +28,16 @@ offset_right = 138.0
 offset_bottom = 188.0
 text = "Level 2"
 
-[node name="Level 3" type="Button" parent="."]
+[node name="Long Level" type="Button" parent="."]
 offset_left = 18.0
 offset_top = 215.0
 offset_right = 138.0
 offset_bottom = 246.0
-text = "Level 3"
+text = "Long Level
+"
 
 [node name="BG" parent="." instance=ExtResource("1_u52ul")]
 
 [connection signal="pressed" from="Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Long Level" to="." method="_on_long_level_pressed"]

@@ -11,6 +11,15 @@
 radius = 12.0
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnp1g"]
+radius = 204.353
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnp1g"]
+size = Vector2(20, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lug5p"]
+size = Vector2(60, 23)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_g7r1m"]
 atlas = ExtResource("1_dhirx")
 region = Rect2(0, 0, 150, 150)
@@ -235,28 +244,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nnp1g"]
-radius = 204.353
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnp1g"]
-size = Vector2(20, 7)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lug5p"]
-size = Vector2(30, 23)
-
 [node name="Goblin" type="CharacterBody2D"]
 script = ExtResource("1_nnp1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mq4fs")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -14)
-sprite_frames = SubResource("SpriteFrames_faeqc")
-animation = &"Death"
-autoplay = "Idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="DetectPlayer" type="Area2D" parent="."]
 
@@ -272,8 +264,15 @@ shape = SubResource("RectangleShape2D_nnp1g")
 [node name="HitAPlayer" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitAPlayer"]
-position = Vector2(0, -2.5)
+position = Vector2(3, -2.5)
 shape = SubResource("RectangleShape2D_lug5p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -11)
+sprite_frames = SubResource("SpriteFrames_faeqc")
+animation = &"Attack"
+autoplay = "Idle"
+frame_progress = 0.722647
 
 [connection signal="body_entered" from="DetectPlayer" to="." method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="DetectPlayer" to="." method="_on_detect_player_body_exited"]

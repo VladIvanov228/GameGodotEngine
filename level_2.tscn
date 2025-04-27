@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba7dhtamtdltr"]
+[gd_scene load_steps=13 format=3 uid="uid://ba7dhtamtdltr"]
 
 [ext_resource type="Texture2D" uid="uid://bew3fiq4xc5wm" path="res://oak_woods_v1.0/background/background_layer_1.png" id="2_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://dprhxut1xyn6h" path="res://PlayerRepository/player.tscn" id="2_xdadj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://lkexi2dbbo0u" path="res://oak_woods_v1.0/background/background_layer_3.png" id="4_7j8ne"]
 [ext_resource type="Texture2D" uid="uid://d3xiebhpo4nfu" path="res://oak_woods_v1.0/oak_woods_tileset.png" id="5_7dov7"]
 [ext_resource type="PackedScene" uid="uid://u8jku0rgwg0l" path="res://MobsRepository/goblin.tscn" id="6_0s5r2"]
+[ext_resource type="PackedScene" uid="uid://c52nfcffq0cge" path="res://Items/gold.tscn" id="7_7j8ne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ehv2h"]
 texture = ExtResource("5_7dov7")
@@ -484,6 +485,46 @@ texture = ExtResource("5_7dov7")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ehv2h")
 
+[sub_resource type="FontFile" id="FontFile_7j8ne"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+
+[sub_resource type="GDScript" id="GDScript_7dov7"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"HP: \" + str($\"../../Player2/Player\".health)
+"
+
+[sub_resource type="GDScript" id="GDScript_ehv2h"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"Gold: \" + str($\"../../Player2/Player\".goldCount)
+"
+
 [node name="level2" type="Node2D"]
 
 [node name="BG" type="ParallaxBackground" parent="."]
@@ -532,3 +573,41 @@ position = Vector2(1046, 461)
 
 [node name="Player" parent="Player2" instance=ExtResource("2_xdadj")]
 position = Vector2(42, 534)
+
+[node name="CollectibleItems" type="Node2D" parent="."]
+
+[node name="Gold" parent="CollectibleItems" instance=ExtResource("7_7j8ne")]
+position = Vector2(209, 532)
+
+[node name="Gold2" parent="CollectibleItems" instance=ExtResource("7_7j8ne")]
+position = Vector2(532, 530)
+
+[node name="Gold3" parent="CollectibleItems" instance=ExtResource("7_7j8ne")]
+position = Vector2(423, 531)
+
+[node name="Gold4" parent="CollectibleItems" instance=ExtResource("7_7j8ne")]
+position = Vector2(351, 531)
+
+[node name="Gold5" parent="CollectibleItems" instance=ExtResource("7_7j8ne")]
+position = Vector2(284, 531)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 5.0
+offset_right = 124.0
+offset_bottom = 50.0
+theme_override_fonts/font = SubResource("FontFile_7j8ne")
+theme_override_font_sizes/font_size = 30
+text = "Health: "
+script = SubResource("GDScript_7dov7")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 19.0
+offset_top = 60.0
+offset_right = 105.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 30
+text = "Gold:"
+script = SubResource("GDScript_ehv2h")
