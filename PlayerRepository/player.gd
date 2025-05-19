@@ -37,10 +37,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-		#animPlayer.play("Jump")
+	
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		animPlayer.play("Jump")
 	
 	if velocity.y > 0:
 		animPlayer.play("Fall")
@@ -107,6 +107,8 @@ func attack3_state():
 	animPlayer.play("Attack3")
 	await animPlayer.animation_finished
 	state = MOVE
+
+
 func combo1():
 	combo = true
 	await animPlayer.animation_finished
